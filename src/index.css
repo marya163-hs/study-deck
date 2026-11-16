@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+body {
+  min-height: 100vh;
+  background: #14141a;
+  transition: background-color 0.2s ease;
+}
+
+body:has(.app.light) {
+  background: #ffffff;
+}
+
+.app {
+  --bg-elevated: #1e1e28;
+  --text: #f2f2f5;
+  --text-muted: #9a9aa5;
+  --accent: #8ab4f8;
+  --accent-contrast: #14141a;
+  --success: #80c8a0;
+  --border: #2c2c38;
+}
+
+.app.light {
+  --bg-elevated: #f5f5f8;
+  --text: #16161a;
+  --text-muted: #5b5b66;
+  --accent: #3366cc;
+  --accent-contrast: #ffffff;
+  --success: #1f8a52;
+  --border: #e2e2ea;
+}
