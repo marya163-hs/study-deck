@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import {Card , CardContent} from "@/components/ui/card";
 
 function Flashcard({ category="General", question, answer }) {
 
@@ -16,12 +17,16 @@ function Flashcard({ category="General", question, answer }) {
 
 
     return(
-        <div className="w-[220px] cursor-pointer rounded-xl border border-(--border) bg-(--bg-elevated) p-5 text-(--text) transition duration-150 hover:-translate-y-0.5 hover:border-(--accent)"
+        <Card 
+            className="w-[220px] cursor-pointer gap-0 bg-(--bg-elevated) p-5 text-(--text) transition duration-150 hover:-translate-y-0.5 hover:border-(--accent)"
              onClick={ () => setIsFlipped(!isFlipped) }
         >
-            <p className="mb-2 text-xs uppercase tracking-[0.4em] text-(--accent)">{category}</p>
-            <p className="mb-3 font-semibold leading-[1.4] text-(--text)">{isFlipped ? answer : question}</p>
-        </div>
+            <CardContent className="px-5">
+                <p className="mb-2 text-xs uppercase tracking-[0.4em] text-(--accent)">{category}</p>
+                <p className="font-semibold leading-[1.4] text-(--text)">{isFlipped ? answer : question}</p>
+            </CardContent>
+        
+        </Card>
     )
 
 }

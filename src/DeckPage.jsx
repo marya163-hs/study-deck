@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react"; // memory tool, managing side effects
 import Flashcard from "./Flashcard.jsx";
 import { btnClass , inputClass } from "./styles.js";
+import {Button} from "@/components/ui/button"
+import { Input } from "@/components/ui/input";
 
 function DeckPage({ cards, setCards, loading, error}) {
     // state to hold whatever the user types for the question
@@ -42,22 +44,22 @@ function DeckPage({ cards, setCards, loading, error}) {
         <div className="p-6">
 
             <form onSubmit={addCard} className="my-4 flex flex-wrap gap-2">
-                <input
-                className={inputClass}
+                <Input
+                className="w-auto flex-1"
                     ref={questionInput}
                     type="text"
                     placeholder="Question"
                     value={question}
                     onChange={(e) => setQuestion(e.target.value)}
                 />
-                <input
-                    className={inputClass}
+                <Input
+                    className="w-auto flex-1"
                     type="text"
                     placeholder="Answer"
                     value={answer}
                     onChange={(e) => setAnswer(e.target.value)}
                 />
-                <button type="submit" className={btnClass}>Add Card</button>
+                <Button type="submit">Add Card</Button>
             </form>
 
 
@@ -72,7 +74,7 @@ function DeckPage({ cards, setCards, loading, error}) {
             {/*if we failed to get data, show this*/}
             {error && <p className="text-(--text-muted)">Could not load cards, try refreshing!</p>}
 
-            <button className={btnClass} onClick={ ()=> setCards([]) }>Clear all</button>
+            <Button onClick={ ()=> setCards([]) }>Clear all</Button>
 
             <div className="mt-5 flex flex-wrap gap-4">
                 {

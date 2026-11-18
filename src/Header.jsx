@@ -2,7 +2,7 @@
 
 import { useContext } from 'react'
 import { ThemeContext } from "./ThemeContext.jsx";
-import { btnClass } from "./styles.js";
+import { Button } from "@/components/ui/button";
 
 function Header(){
 
@@ -13,9 +13,9 @@ function Header(){
             <h1 className='mb-1 text-2xl font-bold tracking-[-0.01em]'>StudyDeck</h1>
             <p className="mb-3.5 text-sm text-(--text-muted)">THIS IS MY HEADER SECTION!</p>
 
-            <button className={btnClass} onClick={toggleTheme}>
+            <Button onClick={toggleTheme}>
                 Switch theme to { theme === "dark" ? "light" : "dark" } mode
-            </button>
+            </Button>
 
         </header>
     )

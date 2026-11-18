@@ -5,7 +5,7 @@
 // dispatch (correct) -> reducer (score, action) => score + 1
 
 import { useReducer, useState } from 'react'
-import {btnClass} from "./styles.js"
+import { Button } from '@/components/ui/button';
 
 const initialState = { current: 0, score: 0 }
 
@@ -37,13 +37,12 @@ function Quiz({cards}) {
             <div className="mt-5 rounded-xl border border-(--border) bg-(--bg-elevated) p-6">
                 <h2 className="mb-3 text-xl font-bold">Quiz complete!</h2>
                 <p className="mb-4 text-(--text-muted)">You scored {state.score}/{cards.length}</p>
-                <button
-                    className={btnClass}
+                <Button
                     onClick={()=> {
                         dispatch({ type: "restart" });
                         setShowAnswer(false)
                     }}
-                >Play Again</button>
+                >Play Again</Button>
             </div>
         )
     }
@@ -59,14 +58,14 @@ function Quiz({cards}) {
             <p className="mb-4 text-(--text-muted)">Question No. {state.current + 1} of {cards.length} Score: {state.score}</p>
             <h2 className="mb-3 text-xl font-bold">{card.question}</h2>
 
-            {!showAnswer && <button className={btnClass} onClick={() => setShowAnswer(true)}>Show answer</button> }
+            {!showAnswer && <Button onClick={() => setShowAnswer(true)}>Show answer</Button> }
 
             {showAnswer && (
                 <>
                 <p className="mb-4 leading-[1.4] text-(--success)">{card.answer}</p>
                 <div className="flex gap-2">
-                    <button className={btnClass} onClick={() => answer(true)}>I got it right</button>
-                    <button className={btnClass} onClick={() => answer(false)}>I got it wrong</button>
+                    <Button onClick={() => answer(true)}>I got it right</Button>
+                    <Button onClick={() => answer(false)}>I got it wrong</Button>
                 </div>
                 </>
             )}
