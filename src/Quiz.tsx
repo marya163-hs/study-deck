@@ -5,13 +5,19 @@
 // dispatch (correct) -> reducer (score, action) => score + 1
 
 import { useReducer, useState } from 'react'
+import type { FlashcardData } from './types';
 import { Button } from '@/components/ui/button';
 import {Progress} from '@/components/ui/progress';
 
-const initialState = { current: 0, score: 0 }
+type QuizState = {current: number; score: number}
+type QuizAction= 
+    | { type: "answer"; correct: boolean}
+    | {type: "restart"}
+
+const initialState: QuizState = { current: 0, score: 0 }
 
 // the reducer
-function quizReducer(state, action) {
+function quizReducer(state: QuizState, action: QuizAction):QuizState {
     switch (action.type) {
         case "answer":
             return {
@@ -26,7 +32,7 @@ function quizReducer(state, action) {
 }
 
 // quiz component
-function Quiz({cards}) {
+function Quiz({cards}: {cards:FlashcardData[]}) {
     const [state, dispatch] = useReducer(quizReducer, initialState)
 
     // a small bit of local UI state
@@ -49,7 +55,7 @@ function Quiz({cards}) {
     }
     const card = cards[state.current]
 
-    function answer(correct) {
+    function answer(correct: boolean) {
         dispatch({ type:"answer", correct: correct })
         setShowAnswer(false)
     }

@@ -1,7 +1,7 @@
 //a component is a function
 
 import { useContext } from 'react'
-import { ThemeContext } from "./ThemeContext.jsx";
+import { ThemeContext } from "./ThemeContext";
 import { Button } from "@/components/ui/button";
 
 function Header(){

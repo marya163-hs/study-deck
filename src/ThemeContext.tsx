@@ -1,11 +1,21 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, type ReactNode } from 'react';
+
+type Theme = "dark" | "light"
+
+type ThemeContextType = {
+    theme: Theme 
+    toggleTheme: () => void
+}
 
 // createContext makes the shared box other components can read from this box
-export const ThemeContext = createContext()
+export const ThemeContext = createContext<ThemeContextType>({
+    theme:"dark",
+    toggleTheme: () => {},
+})
 
 // Provider wraps our app and supplies the theme + a way to change it
-export function ThemeProvider({children}) {
-    const [theme, setTheme] = useState("dark")
+export function ThemeProvider({children}: {children: ReactNode}) {
+    const [theme, setTheme] = useState<Theme>("dark")
 
     // flip between dark and light
     function toggleTheme() {

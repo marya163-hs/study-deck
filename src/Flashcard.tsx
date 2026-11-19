@@ -1,7 +1,13 @@
 import { useState } from 'react';
-import {Card , CardContent} from "@/components/ui/card";
+import {Card, CardContent} from "@/components/ui/card";
 
-function Flashcard({ category="General", question, answer }) {
+type FlashcardProps = {
+    category?: string
+    question: string
+    answer: string
+}
+
+function Flashcard({ category="General", question, answer }: FlashcardProps) {
 
 // props = {
 //  category: "Geography",

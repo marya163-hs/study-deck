@@ -1,32 +1,42 @@
 import { useState, useEffect, useRef } from "react"; // memory tool, managing side effects
-import Flashcard from "./Flashcard.jsx";
-import { btnClass , inputClass } from "./styles.js";
-import {Button} from "@/components/ui/button"
-import { Input } from "@/components/ui/input";
+import type { Dispatch, SetStateAction, FormEvent } from "react";
+import Flashcard from "./Flashcard";
+import type { FlashcardData } from "./types";
+import { Button } from "@/components/ui/button";
+import {Input} from "@/components/ui/input";
 
-function DeckPage({ cards, setCards, loading, error}) {
+type DeckPageProps = {
+    cards: FlashcardData[]
+    setCards:Dispatch<SetStateAction<FlashcardData[]>>
+    loading: boolean
+    error : boolean;
+    
+}
+
+
+function DeckPage({ cards, setCards, loading, error}: DeckPageProps) {
     // state to hold whatever the user types for the question
     const [question, setQuestion] = useState("")
     // state to hold whatever the user types for the answer
     const [answer, setAnswer] = useState("")
     // create an empty ref, we will eventually point it at a question input
-    const questionInput = useRef(null)
+    const questionInput = useRef<HTMLInputElement>(null)
 
 
     // when an app loads put the cursor in the question box automatically
     useEffect(()=>{
         // .current is the actual input element, and .focus() puts the cursor inside it
-        questionInput.current.focus()
+        questionInput.current?.focus()
     }, [])
 
-    function addCard(event) {
+    function addCard(event:FormEvent<HTMLFormElement>) {
         event.preventDefault() // stops the browsers page from reloading when form submitted
 
         if (question.trim() === "" || answer.trim() === "") return;
 
         // build a new card object from what the user typed
         // Date.now() which gives us a unique number
-        const newCard = {
+        const newCard: FlashcardData = {
             id: Date.now(),
             category: "Custom",
             question: question,

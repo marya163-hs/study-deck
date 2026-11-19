@@ -2,13 +2,13 @@
 // a component is basically a function that returns
 // a piece of the screen
 
-import Header from './Header.jsx'
-import DeckPage from './DeckPage.jsx'
-import QuizPage from "./QuizPage.jsx";
+import Header from './Header'
+import DeckPage from './DeckPage'
+import QuizPage from "./QuizPage";
 
-import { useCards } from "./useCards.js";
+import { useCards } from "./useCards";
 import { useContext } from 'react';
-import { ThemeContext } from "./ThemeContext.jsx";
+import { ThemeContext } from "./ThemeContext";
 
 import { Routes, Route, Link } from 'react-router-dom'
 

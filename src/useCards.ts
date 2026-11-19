@@ -1,4 +1,7 @@
 import { useState, useEffect } from 'react';
+import {FlashcardData} from './types';
+
+type ApiItem = { category: string; question: string; correct_answer: string }
 
 // two things that make a hook
 
@@ -8,7 +11,7 @@ import { useState, useEffect } from 'react';
 // custom hook: a function starting with "use" that bundles reusable logic
 export function useCards() {
     // create an empty array in memory to hold our cards
-    const [cards, setCards] = useState([])
+    const [cards, setCards] = useState<FlashcardData[]>([])
 
     // are we still waiting? for the data
     const [loading, setLoading] = useState(true)
@@ -22,9 +25,9 @@ export function useCards() {
     useEffect(()=> {
         fetch("https://opentdb.com/api.php?amount=50&encode=url3986")
             .then((response) => response.json())
-            .then((data) => {
+            .then((data: {results: ApiItem[]}) => {
                 // we turn each item into our card shape
-                const loaded = data.results.map((item, index) => ({
+                const loaded: FlashcardData[] = data.results.map((item, index) => ({
                     id: index,
                     category: decodeURIComponent(item.category),
                     question: decodeURIComponent(item.question),
