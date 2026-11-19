@@ -6,6 +6,7 @@
 
 import { useReducer, useState } from 'react'
 import { Button } from '@/components/ui/button';
+import {Progress} from '@/components/ui/progress';
 
 const initialState = { current: 0, score: 0 }
 
@@ -56,6 +57,7 @@ function Quiz({cards}) {
     return (
         <div className="mt-5 rounded-xl border border-(--border) bg-(--bg-elevated) p-6">
             <p className="mb-4 text-(--text-muted)">Question No. {state.current + 1} of {cards.length} Score: {state.score}</p>
+            <Progress value={(state.current / cards.length) * 100} className="mb-4"></Progress>
             <h2 className="mb-3 text-xl font-bold">{card.question}</h2>
 
             {!showAnswer && <Button onClick={() => setShowAnswer(true)}>Show answer</Button> }
